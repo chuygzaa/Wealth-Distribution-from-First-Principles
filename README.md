@@ -6,7 +6,7 @@ This repository contains the Python-based operations research model and interact
 
 Instead of relying on top-down macroeconomic equilibrium equations, this engine treats the economy as a closed thermodynamic system governed by accounting conservation laws, compounding mathematics ($r > g$), and localized stochastic exchange. 
 
-You can interact with the live simulation via the Streamlit Community Cloud here: **[Insert Streamlit URL Here]**
+You can interact with the live simulation via the Streamlit Community Cloud here: **https://wealth-distribution-from-first-principles-ebswavymq725e8ym6bmf.streamlit.app/**
 
 ---
 

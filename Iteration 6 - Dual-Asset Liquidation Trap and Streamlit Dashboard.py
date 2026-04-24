@@ -63,7 +63,8 @@ def run_generational_simulation(estate_tax_rate, trials, num_rounds):
         for round_num in range(1, num_rounds + 1):
             ages += 1
             asset_price *= (1.0 + asset_appreciation)
-            assets *= (1.0 + asset_dividend)
+            # Dividends pay out as liquid cash based on current asset value
+            liquid_wealth += (assets * asset_price) * asset_dividend
             total_wealth = liquid_wealth + (assets * asset_price)
 
             dying_mask = ages == 80
@@ -186,8 +187,9 @@ def run_generational_simulation(estate_tax_rate, trials, num_rounds):
             actual_consumption = np.minimum(liquid_wealth, intended_consumption)
             liquid_wealth -= actual_consumption
 
-            safe_total = np.where(np.sum(total_wealth) == 0, 1e-9, np.sum(total_wealth))
-            liquid_wealth += np.sum(actual_consumption) * (total_wealth / safe_total)
+            total_asset_value = assets * asset_price
+            safe_asset_total = np.where(np.sum(total_asset_value) == 0, 1e-9, np.sum(total_asset_value))
+            liquid_wealth += np.sum(actual_consumption) * (total_asset_value / safe_asset_total)
 
             indices = np.arange(num_agents)
             np.random.shuffle(indices)
